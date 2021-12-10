@@ -1,4 +1,18 @@
-﻿using System.Collections.Generic;
+﻿/*
+Final Submission
+
+This year, I performed Much Better than Last Year.
+Hope to have Under 500 Rank Worldwide :)
+
+"Indian Army -- SF"
+Author : @Devang_25
+
+*/
+
+
+
+
+using System.Collections.Generic;
 using HashCode2020.models;
 
 namespace HashCode2021

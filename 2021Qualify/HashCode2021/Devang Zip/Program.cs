@@ -1,4 +1,16 @@
-﻿using HashCode2020;
+﻿/*
+Final Submission
+
+This year, I performed Much Better than Last Year.
+Hope to have Under 500 Rank Worldwide :)
+
+"Indian Army -- SF"
+Author : @Devang_25
+
+*/
+
+
+using HashCode2020;
 using HashCode2020.models;
 using System;
 using System.Collections.Generic;
