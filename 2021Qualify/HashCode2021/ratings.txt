@@ -1,6 +1,6 @@
-a.txt 1000
-b.txt 42000
-c.txt 900
-d.txt 0
-e.txt 94000
-f.txt 0
+a.txt 2002
+b.txt 4568604
+c.txt 1305802
+d.txt 2484578
+e.txt 710665
+f.txt 1399067

@@ -26,16 +26,19 @@ namespace HashCode2021
             // ================ CUSTOM OUTPUT WRITE START =========================
             // Just fill "lines" variable with each line to be outputed on file
 
-            var placesWithSchedules = r.places.Where(p => p.schedules != null && p.schedules.Count > 0).ToList();
+            var placesWithSchedules = r.places.Values.Where(p => p.schedules != null && p.schedules.Count > 0).ToList();
 
             lines.Add(placesWithSchedules.Count.ToString());
 
-            foreach(var place in placesWithSchedules)
+            // 1k on C
+            // .Where(s => s.order < int.MaxValue)
+
+            foreach (var place in placesWithSchedules)
             {
                 lines.Add($"{place.id}");
-                lines.Add($"{place.schedules.Count}");
+                lines.Add($"{place.schedules.Count()}");
 
-                foreach (var schedule in place.schedules)
+                foreach (var schedule in place.schedules.Values.OrderBy(s => s.order))
                 {
                     lines.Add($"{schedule.street.id} {schedule.time}");
                 }
@@ -53,8 +56,8 @@ namespace HashCode2021
 
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
-            //if (rating.GetNewBest().Contains(file)) 
-            File.WriteAllLines(fileName, lines);
+            if (rating.GetNewBest().Contains(file)) 
+                File.WriteAllLines(fileName, lines);
 
             return fileName;
         }

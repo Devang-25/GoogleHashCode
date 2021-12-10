@@ -57,7 +57,7 @@ namespace HashCode2021
                 streets.Add(name, street);
 
                 destPlace.inDestinations.Add(orig, originPlace);
-                destPlace.inStreets.Add(name, street);
+                destPlace.inStreets.Add(street);
 
                 originPlace.outDestinations.Add(dest, destPlace);
                 originPlace.outStreets.Add(name, street);
@@ -69,12 +69,14 @@ namespace HashCode2021
                 var split = lines[i + 1 + S].Split(" ");
                 var car = new Car(i);
                 var score = 0;
+                var count = 1;
                 foreach (var street in split.Skip(1))
                 {
-                    car.route.Add(streets[street]);
+                    car.AddToRoute(streets[street], count ++ == split.Count() - 1);
                     score += streets[street].cost;
                 }
-                car.score = ((double)(duration - score) / (double)duration) / 1f;
+                //car.score = ((double)(duration - score) / (double)duration) / 1f;
+                car.score = duration - score;
                 if (car.score < 0) car.score = 0;
                 cars.Add(i, car);
             }
@@ -84,7 +86,7 @@ namespace HashCode2021
 
 
 
-            return new Model(cars, places, duration, bonus);
+            return new Model(cars, places, duration, bonus, streets);
             // ================ CUSTOM INPUT READ END =========================
         }
     }

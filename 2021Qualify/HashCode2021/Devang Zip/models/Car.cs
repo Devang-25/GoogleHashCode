@@ -21,15 +21,31 @@ namespace HashCode2020.models
     public class Car
     {
         public int id;
-        public List<Street> route = new List<Street>();
-        public double score = 0;
+        public LinkedList<Street> originalRoute = new LinkedList<Street>();
+        public LinkedList<Street> route = new LinkedList<Street>();
+        public double score = 0; // calculated at input
 
-        // used by score
-        public int curstreetindex = 0; // index of current street where the car is in its route
+        public int timeAtPlace = 0;
+        internal bool waiting = false;
 
         public Car(int id)
         {            
             this.id = id;
+        }
+
+        internal void AddToRoute(Street street, bool lastRoute)
+        {
+            if (!lastRoute) street.countCarsPassingBy += 1;
+            route.AddLast(street);
+            originalRoute.AddLast(street);
+        }
+
+        public void Reset()
+        {
+            timeAtPlace = 0;
+            waiting = true;
+            route = new LinkedList<Street>(originalRoute);
+            route.First.Value.carsAtPlace.Enqueue(this);
         }
     }
 }
